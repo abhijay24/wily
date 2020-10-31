@@ -4,7 +4,7 @@ import {createAppContainer, createSwitchNavigator} from 'react-navigation'
 import BookTransaction from './screens/BookTransaction'
 import SearchScreen from './screens/SearchScreen'
 import {createBottomTabNavigator} from 'react-navigation-tabs'
-
+import LoginScreen from './screens/LoginScreen'
 
 export default class App extends React.Component{
  render(){
@@ -26,7 +26,6 @@ const TabNavigator = createBottomTabNavigator({
         if(routeName === 'Transaction' ){
           return(
             <Image
-            source = {require('../assets/book.png')}
             style = {{width:40, height: 40}}
             />
           )
@@ -43,7 +42,11 @@ const TabNavigator = createBottomTabNavigator({
     })
   }
 )
-const AppContainer = createAppContainer(TabNavigator)
+const SwitchNavigator = createSwitchNavigator({
+  LoginScreen : {screen : LoginScreen},
+  TabNavigator : {screen : TabNavigator},
+})
+const AppContainer = createAppContainer(SwitchNavigator)
 
 const styles = StyleSheet.create({
   container: {
